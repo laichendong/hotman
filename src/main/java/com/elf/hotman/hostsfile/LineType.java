@@ -1,0 +1,28 @@
+package com.elf.hotman.hostsfile;
+
+/**
+ * User: laichendong
+ * Date: 12-5-24
+ * Time: обнГ4:17
+ */
+public enum LineType {
+	NORMAL_LINE,
+	FILE_MARKER,
+
+	IGNORE_LINES_START,
+	IGNORE_LINE,
+	IGNORE_LINES_END,
+
+	SPARE_IPS_START,
+	SPARE_IP,
+	SPARE_IPS_END,
+
+	SPARE_DOMAINS_START,
+	SPARE_DOMAIN,
+	SPARE_DOMAINS_END,
+
+	HOST_CONFIG_START,
+	HOST_CONFIG,
+	HOST_CONFIG_END,
+
+}
