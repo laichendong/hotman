@@ -16,30 +16,28 @@ import java.util.regex.Pattern;
  */
 public class HostsFile {
 
+	/** hosts文件名 */
 	public static final String HOST_FILE_NAME = "hosts";
 
+	/** hosts文件所在文件夹路径 */
 	public static final String HOST_FILE_DIR = "C:\\Windows\\System32\\drivers\\etc";
-	/**
-	 * host文件路径
-	 */
+	
+	/** host文件路径 */
 	public static final String HOST_FILE_PATH = HOST_FILE_DIR + File.separator + HOST_FILE_NAME;
 
+	/** 用于存放备份hosts文件的的问价夹名称 */
 	private static final String HOSTS_BAK_DIR_NAME = "hosts_bak";
-	/**
-	 * 注释行正则表达式
-	 */
+
+	/** 注释行正则表达式 */
 	public static final Pattern COMMENT_LINE_PATTERN = Pattern.compile("^(\\s*#+)(.*)$");
-	/**
-	 * "有效行"正则表达式
-	 */
+
+	/** "有效行"正则表达式 */
 	public static final Pattern VALID_LINE_PATTERN = Pattern.compile("^(\\s*#*\\s*)(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})(\\s+)([\\w\\.\\s-]+)$");
-	/**
-	 * 注释行 前缀
-	 */
+
+	/** 注释行 前缀 */
 	private static final String COMMENT_LINE_PREFIX = "# ";
-	/**
-	 * 处理过的文件格式标记
-	 */
+
+	/** 处理过的文件格式标记 */
 	private static final String TAG_FILE_MARKER = "##--elf hosts file--##";
 	private static final String TAG_HOST_CONFIG_START = "##--host config start--##";
 	private static final String TAG_HOST_CONFIG_END = "##--host config end--##";
@@ -59,31 +57,39 @@ public class HostsFile {
 	 * 域名集合
 	 */
 	private TreeSet<String> domains;
+
 	/**
 	 * ip集合
 	 */
 	private TreeSet<String> ips;
+
 	/**
 	 * 有效的hosts配置
 	 */
 	private Map<String, String> hosts;
+
 	/**
 	 * 忽略处理的行
 	 */
 	private List<String> ignoreLines;
 
 	/**
-	 * 文件格式表示，true 表示是已处理过的格式
+	 * 私有的构造方法
 	 */
-//	private boolean elfFormat;
 	private HostsFile() {
 		init();
 	}
 
+	/**
+	 * 刷新hostsFile对象
+	 */
 	public void refresh() {
 		init();
 	}
 
+	/**
+	 * 初始化hostsFile对象
+	 */
 	public void init() {
 		// 读取和解析host文件
 		this.domains = new TreeSet<String>(new Comparator<String>() {

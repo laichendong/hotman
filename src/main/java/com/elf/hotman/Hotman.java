@@ -68,6 +68,7 @@ public class Hotman extends JFrame {
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation((int) (dimension.getWidth() / 2 - W / 2), (int) (dimension.getHeight() / 2 - H / 2));
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(false);
 
 		// ”Ú√˚¡–±Ì
 		this.domainList = new DomainList();
