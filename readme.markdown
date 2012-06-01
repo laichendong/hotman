@@ -1,6 +1,6 @@
 # 东东吃饱没事时写的代码
 
-## hotmam 
+## hotmam [code][https://github.com/laichendong/elf/tree/master/src/main/java/com/elf/hotman]
 ###  —— 又一个hosts管理工具
 
 * 首次运行会备份和格式化hosts文件
