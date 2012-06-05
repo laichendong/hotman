@@ -26,10 +26,10 @@ public class Chapter1 {
 			int[] seed = new int[MAX_NUMBER];
 			int i = 0;
 			do {
-				seed[i] = i;
+				seed[i] = i++;
 			} while (i < MAX_NUMBER);
 			for (int j = 0; j < FILE_SIZE; j++) {
-				swap(seed, j, random(j, FILE_SIZE - 1));
+				swap(seed, j, random(j, FILE_SIZE));
 				writer.write(String.valueOf(seed[j]));
 				writer.newLine();
 			}
