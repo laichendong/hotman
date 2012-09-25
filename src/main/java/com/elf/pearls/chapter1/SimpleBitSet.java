@@ -1,13 +1,15 @@
 package com.elf.pearls.chapter1;
 
 /**
+ * 简单的bitset实现
  * User: laichendong
  * Date: 12-6-5
  * Time: 下午5:29
  */
 public class SimpleBitSet {
-	private static final int BIT_SPER_WORD = 32; //  一个数组元素表示多少位宽
+	private static final int BITS_PER_WORD = 32; //  一个码字多少位
 	private static final int SHIFT = 5;
+	final char[] digits = {'0', '1'};
 
 	private int[] a;  // bitset内部表示
 
@@ -16,7 +18,7 @@ public class SimpleBitSet {
 	}
 
 	public SimpleBitSet(int capacity) {
-		this.a = new int[1 + (capacity - 1) / BIT_SPER_WORD];
+		this.a = new int[1 + ((capacity - 1) >> SHIFT)];
 	}
 
 	/**
@@ -25,7 +27,7 @@ public class SimpleBitSet {
 	 * @param i index
 	 */
 	public void set(int i) {
-		a[i >> SHIFT] |= 1 << (BIT_SPER_WORD - 1 - i);
+		a[i >> SHIFT] |= 1 << (BITS_PER_WORD - 1 - i);
 	}
 
 	/**
@@ -34,7 +36,7 @@ public class SimpleBitSet {
 	 * @param i index
 	 */
 	public void clr(int i) {
-		a[i >> SHIFT] &= ~(1 << (BIT_SPER_WORD - 1 - i));
+		a[i >> SHIFT] &= ~(1 << (BITS_PER_WORD - 1 - i));
 	}
 
 	/**
@@ -44,7 +46,7 @@ public class SimpleBitSet {
 	 * @return true | false
 	 */
 	public boolean test(int i) {
-		return 1 == ((a[i >> SHIFT] >> (BIT_SPER_WORD - 1 - i)) & 1);
+		return 1 == ((a[i >> SHIFT] >> (BITS_PER_WORD - 1 - i)) & 1);
 	}
 
 	@Override
@@ -65,7 +67,6 @@ public class SimpleBitSet {
 	 * @return 二进制字符串表示
 	 */
 	private String toBinaryStr(int i) {
-		final char[] digits = {'0', '1'};
 		char[] buf = new char[32];
 		int charPos = 32;
 		int radix = 1 << 1;
